@@ -1,0 +1,30 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Node / frontend
+node_modules/
+dist/
+frontend/dist/
+frontend/node_modules/
+
+# Python / backend
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Django
+backend/db.sqlite3
+backend/staticfiles/
+backend/media/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
