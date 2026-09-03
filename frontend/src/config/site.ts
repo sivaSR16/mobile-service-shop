@@ -12,7 +12,7 @@ export const siteConfig = {
   tagline: "Fast & Reliable Mobile Phone Repair",
   phone: "+91 8667013552", // TODO: replace with real shop phone
   whatsappNumber: "918667013552", // TODO: digits only, country code, no symbols
-  email: "contact@example.com", // TODO: replace with real shop email
+  email: "seyonsmartmobiles@gmail.com", // TODO: replace with real shop email
   address: "No.19, Mariammal Nagar Main Road, Kavagari, Puzhal, Chennai -66.", // TODO: replace with real address
   hours: "Mon–Sat: 10:00 AM – 8:00 PM", // TODO: confirm real hours
   socials: {
