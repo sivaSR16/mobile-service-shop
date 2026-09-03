@@ -1,7 +1,7 @@
 import logging
 
+import requests
 from django.conf import settings
-from django.core.mail import send_mail
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 
@@ -39,7 +39,7 @@ class EnquiryViewSet(ModelViewSet):
 
 
 def notify_new_enquiry(enquiry: Enquiry) -> None:
-    if not settings.SHOP_NOTIFICATION_EMAIL:
+    if not settings.SHOP_NOTIFICATION_EMAIL or not settings.BREVO_API_KEY:
         return
 
     body = (
@@ -54,13 +54,19 @@ def notify_new_enquiry(enquiry: Enquiry) -> None:
         f"Problem:\n{enquiry.problem_description}\n"
     )
 
-    try:
-        send_mail(
-            subject=f"New Enquiry: {enquiry.customer_name}",
-            message=body,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.SHOP_NOTIFICATION_EMAIL],
-            fail_silently=False,
-        )
-    except Exception:
-        logger.exception("Failed to send enquiry notification email for enquiry %s", enquiry.id)
+    response = requests.post(
+        "https://api.brevo.com/v3/smtp/email",
+        headers={
+            "api-key": settings.BREVO_API_KEY,
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        json={
+            "sender": {"email": settings.DEFAULT_FROM_EMAIL},
+            "to": [{"email": settings.SHOP_NOTIFICATION_EMAIL}],
+            "subject": f"New Enquiry: {enquiry.customer_name}",
+            "textContent": body,
+        },
+        timeout=10,
+    )
+    response.raise_for_status()

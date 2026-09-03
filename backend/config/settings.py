@@ -160,19 +160,8 @@ CORS_ALLOW_ALL_ORIGINS = DEBUG and env_bool("CORS_ALLOW_ALL_ORIGINS_IN_DEBUG", F
 
 
 # Email
-# Used to notify the shop (and optionally the customer) when a new enquiry
-# comes in. Leave EMAIL_HOST_USER/EMAIL_HOST_PASSWORD unset to fall back to
-# printing emails to the console instead of sending them.
-EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
-EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", True)
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
-EMAIL_TIMEOUT = 10
-DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER)
-SHOP_NOTIFICATION_EMAIL = os.environ.get("SHOP_NOTIFICATION_EMAIL", EMAIL_HOST_USER)
-
-if EMAIL_HOST_USER and EMAIL_HOST_PASSWORD:
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-else:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# Used to notify the shop when a new enquiry comes in. Sent via Brevo's HTTP
+# API (not SMTP) because Render's free tier blocks outbound SMTP ports.
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "")
+SHOP_NOTIFICATION_EMAIL = os.environ.get("SHOP_NOTIFICATION_EMAIL", DEFAULT_FROM_EMAIL)
