@@ -20,7 +20,7 @@ export default function ContactSection() {
         </div>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-5">
-          <div className="lg:col-span-3 rounded-2xl border border-ink-100 bg-white p-6 shadow-sm sm:p-8">
+          <div className="lg:col-span-3 rounded-2xl border border-ink-100 bg-white/80 p-6 shadow-sm sm:p-8">
             <EnquiryForm />
           </div>
 
@@ -56,7 +56,7 @@ function ContactCard({
   external?: boolean;
 }) {
   const content = (
-    <div className="flex items-start gap-4 rounded-2xl border border-ink-100 bg-white p-5 shadow-sm transition hover:border-brand-200">
+    <div className="flex items-start gap-4 rounded-2xl border border-ink-100 bg-white/80 p-5 shadow-sm transition hover:border-brand-200">
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>

@@ -7,7 +7,7 @@ export default function ServicesSection() {
   const { data, loading, error } = useFetch(fetchServices, []);
 
   return (
-    <section id="services" className="bg-ink-50 py-20">
+    <section id="services" className="bg-ink-50/40 py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-brand-600">

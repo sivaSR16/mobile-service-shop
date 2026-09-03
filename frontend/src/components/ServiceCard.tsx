@@ -32,7 +32,7 @@ export default function ServiceCard({ service }: { service: Service }) {
   const Icon = iconFor(service.name);
 
   return (
-    <div className="group flex flex-col rounded-2xl border border-ink-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <div className="group flex flex-col rounded-2xl border border-ink-100 bg-white/80 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
       <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition group-hover:bg-brand-500 group-hover:text-white">
         <Icon className="h-6 w-6" aria-hidden="true" />
       </span>

@@ -28,7 +28,7 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-ink-50 py-20">
+    <section id="faq" className="bg-ink-50/40 py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-brand-600">FAQ</h2>
@@ -37,7 +37,7 @@ export default function FaqSection() {
           </p>
         </div>
 
-        <div className="mt-10 divide-y divide-ink-200 rounded-2xl border border-ink-200 bg-white">
+        <div className="mt-10 divide-y divide-ink-200 rounded-2xl border border-ink-200 bg-white/80">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (

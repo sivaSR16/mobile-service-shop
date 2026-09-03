@@ -12,7 +12,7 @@ const brands = [
 
 export default function BrandsSection() {
   return (
-    <section className="border-y border-ink-100 bg-white py-14">
+    <section className="border-y border-ink-100 bg-white/40 py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="text-center text-sm font-semibold uppercase tracking-wide text-ink-600">
           Brands we service

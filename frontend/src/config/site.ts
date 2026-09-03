@@ -7,12 +7,13 @@
  * anywhere else in the app.
  */
 export const siteConfig = {
-  shopName: "Mobile Service", // TODO: replace with final business name
+  shopName: "SEYON",
+  brandSubtitle: "Smart Mobiles and Services",
   tagline: "Fast & Reliable Mobile Phone Repair",
-  phone: "+91 00000 00000", // TODO: replace with real shop phone
-  whatsappNumber: "910000000000", // TODO: digits only, country code, no symbols
+  phone: "+91 8667013552", // TODO: replace with real shop phone
+  whatsappNumber: "918667013552", // TODO: digits only, country code, no symbols
   email: "contact@example.com", // TODO: replace with real shop email
-  address: "Shop Address, City, State", // TODO: replace with real address
+  address: "No.19, Mariammal Nagar Main Road, Kavagari, Puzhal, Chennai -66.", // TODO: replace with real address
   hours: "Mon–Sat: 10:00 AM – 8:00 PM", // TODO: confirm real hours
   socials: {
     instagram: "",

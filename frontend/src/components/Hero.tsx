@@ -1,9 +1,23 @@
-import { MessageCircle, ShieldCheck, Smartphone, Wrench } from "lucide-react";
+import { useEffect, useState } from "react";
+import { MessageCircle, ShieldCheck, Wrench } from "lucide-react";
 import { getWhatsappLink, siteConfig } from "../config/site";
+import phone from "../assets/phone.png";
+import phone2 from "../assets/phone2.png";
+
+const heroImages = [phone, phone2];
 
 export default function Hero() {
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveImage((current) => (current + 1) % heroImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="home" className="relative overflow-hidden bg-ink-900">
+    <section id="home" className="relative overflow-hidden bg-ink-900/70">
       <div
         className="absolute inset-0 bg-gradient-to-br from-brand-600/30 via-ink-900 to-ink-900"
         aria-hidden="true"
@@ -45,12 +59,18 @@ export default function Hero() {
         </div>
 
         <div className="relative mx-auto flex h-72 w-72 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 ring-1 ring-inset ring-white/10 sm:h-96 sm:w-96">
-          <div className="absolute inset-6 rounded-2xl border border-white/10 bg-ink-800/60" />
-          <Smartphone
-            className="relative h-28 w-28 text-brand-400 sm:h-36 sm:w-36"
-            strokeWidth={1.25}
-            aria-hidden="true"
-          />
+          <div className="absolute inset-6 overflow-hidden rounded-2xl border border-white/10 bg-ink-800/60">
+            {heroImages.map((image, index) => (
+              <img
+                key={image}
+                src={image}
+                alt="Smartphone repair"
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+                  index === activeImage ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

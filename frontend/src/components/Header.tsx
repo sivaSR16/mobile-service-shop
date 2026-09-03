@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Menu, Smartphone, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { siteConfig } from "../config/site";
+import logo from "../assets/logo.png";
+import hr from "../assets/hr.png";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -22,13 +24,16 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/70 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#home" className="flex items-center gap-2 font-bold text-ink-900">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-white">
-            <Smartphone className="h-5 w-5" aria-hidden="true" />
+          <img src={logo} alt={siteConfig.shopName} className="h-9 w-9 rounded-lg object-cover" />
+          <span className="flex flex-col leading-none">
+            <img src={hr} alt={siteConfig.shopName} className="h-6 w-auto object-contain" />
+            <span className="mt-1 text-[10px] font-semibold uppercase tracking-wide text-ink-500">
+              {siteConfig.brandSubtitle}
+            </span>
           </span>
-          <span className="text-lg tracking-tight">{siteConfig.shopName}</span>
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
@@ -65,7 +70,7 @@ export default function Header() {
 
       {open && (
         <nav
-          className="border-t border-ink-100 bg-white px-4 pb-6 pt-2 lg:hidden"
+          className="border-t border-ink-100 bg-white/90 px-4 pb-6 pt-2 lg:hidden backdrop-blur"
           aria-label="Mobile"
         >
           <div className="flex flex-col gap-1">

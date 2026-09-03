@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { submitEnquiry } from "../services/enquiries";
 import { isValidEmail, isValidPhone } from "../utils/validation";
+import { getWhatsappLink } from "../config/site";
 import type { EnquiryPayload, PreferredContactMethod } from "../types";
 
 const initialForm: EnquiryPayload = {
@@ -23,6 +24,7 @@ export default function EnquiryForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
+  const [lastSubmitted, setLastSubmitted] = useState<EnquiryPayload | null>(null);
 
   function update<K extends keyof EnquiryPayload>(key: K, value: EnquiryPayload[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -47,6 +49,7 @@ export default function EnquiryForm() {
     setSubmitting(true);
     try {
       await submitEnquiry(form);
+      setLastSubmitted(form);
       setSubmitted(true);
       setForm(initialForm);
     } catch {
@@ -69,6 +72,18 @@ export default function EnquiryForm() {
         <p className="text-sm text-green-700">
           Our team will contact you shortly.
         </p>
+        {lastSubmitted && (
+          <a
+            href={getWhatsappLink(
+              `Hi, I just submitted a repair enquiry.\nName: ${lastSubmitted.customer_name}\nPhone: ${lastSubmitted.phone}\nBrand/Model: ${lastSubmitted.brand} ${lastSubmitted.model}\nIssue: ${lastSubmitted.problem_description}`,
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 text-sm font-medium text-brand-600 underline"
+          >
+            Notify us on WhatsApp for faster response
+          </a>
+        )}
         <button
           type="button"
           className="mt-2 text-sm font-medium text-brand-600 underline"

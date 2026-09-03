@@ -32,6 +32,10 @@ html {
 
 body {
   @apply bg-white text-ink-800 antialiased;
+  background-image: url("./assets/bg.png");
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100% auto;
 }
 
 :focus-visible {

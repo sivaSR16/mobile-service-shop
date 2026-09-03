@@ -1,17 +1,21 @@
-import { Mail, MapPin, Phone, Smartphone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "../config/site";
+import logo from "../assets/logo.png";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-ink-100 bg-ink-900 text-ink-200">
+    <footer className="border-t border-ink-100 bg-ink-900/85 text-ink-200">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2 font-bold text-white">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500">
-                <Smartphone className="h-4 w-4" aria-hidden="true" />
+              <img src={logo} alt={siteConfig.shopName} className="h-8 w-8 rounded-lg object-cover" />
+              <span className="flex flex-col leading-none">
+                <span className="text-lg tracking-tight text-brand-500">{siteConfig.shopName}</span>
+                <span className="mt-1 text-[10px] font-semibold uppercase tracking-wide text-ink-300">
+                  {siteConfig.brandSubtitle}
+                </span>
               </span>
-              {siteConfig.shopName}
             </div>
             <p className="mt-3 text-sm text-ink-300">
               Professional smartphone repair, genuine-quality parts and
