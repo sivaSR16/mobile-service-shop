@@ -32,7 +32,10 @@ class EnquiryViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         enquiry = serializer.save()
-        notify_new_enquiry(enquiry)
+        try:
+            notify_new_enquiry(enquiry)
+        except Exception:
+            logger.exception("Failed to send enquiry notification email")
 
 
 def notify_new_enquiry(enquiry: Enquiry) -> None:
